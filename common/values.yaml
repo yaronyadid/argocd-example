@@ -1,0 +1,9 @@
+global:
+  environment: production
+  domain: example.com
+
+nginx:
+  enabled: true
+  ingress:
+    className: nginx
+    enabled: true

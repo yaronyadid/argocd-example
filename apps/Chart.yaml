@@ -1,0 +1,9 @@
+apiVersion: v2
+name: apps
+description: Umbrella chart for all applications
+type: application
+version: 0.1.0
+dependencies:
+  - name: nginx
+    version: 0.1.0
+    condition: nginx.enabled
