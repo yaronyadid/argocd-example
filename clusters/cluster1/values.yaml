@@ -1,14 +1,13 @@
-global:
-  clusterName: cluster1
-  region: us-east-1
+# Cluster1 specific values
+environment: development
 
 nginx:
-  replicaCount: 3
-  image:
-    tag: "1.24.0"
+  replicaCount: 2
   ingress:
     hosts:
-      - host: nginx.cluster1.example.com
-        paths:
-          - path: /
-            pathType: Prefix
+      - host: nginx-dev.example.com
+
+redis:
+  replicaCount: 1
+  config:
+    maxmemory: 128mb

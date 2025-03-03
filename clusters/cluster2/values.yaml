@@ -1,14 +1,13 @@
-global:
-  clusterName: cluster2
-  region: us-east-1
+# Cluster2 specific values
+environment: staging
 
 nginx:
   replicaCount: 3
-  image:
-    tag: "1.24.0"
   ingress:
     hosts:
-      - host: nginx.cluster2.example.com
-        paths:
-          - path: /
-            pathType: Prefix
+      - host: nginx-staging.example.com
+
+redis:
+  replicaCount: 2
+  config:
+    maxmemory: 512mb

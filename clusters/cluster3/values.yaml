@@ -1,14 +1,13 @@
-global:
-  clusterName: cluster3
-  region: us-east-1
+# Cluster3 specific values
+environment: production
 
 nginx:
-  replicaCount: 3
-  image:
-    tag: "1.24.0"
+  replicaCount: 5
   ingress:
     hosts:
-      - host: nginx.cluster3.example.com
-        paths:
-          - path: /
-            pathType: Prefix
+      - host: nginx.example.com
+
+redis:
+  replicaCount: 3
+  config:
+    maxmemory: 1024mb

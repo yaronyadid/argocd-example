@@ -1,9 +1,14 @@
+# Common values for all clusters
 global:
-  environment: production
-  domain: example.com
+  imageRegistry: docker.io
+  imagePullSecrets: []
 
 nginx:
-  enabled: true
-  ingress:
-    className: nginx
-    enabled: true
+  service:
+    type: ClusterIP
+    port: 80
+
+redis:
+  service:
+    type: ClusterIP
+    port: 6379
