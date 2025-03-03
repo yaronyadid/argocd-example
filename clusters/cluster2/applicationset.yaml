@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster2-apps
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - name: nginx
+        path: apps/nginx
+        namespace: apps
+      - name: redis
+        path: apps/redis
+        namespace: apps
+      - name: bootstrap
+        path: bootstrap
+        namespace: argocd
+  template:
+    metadata:
+      name: 'cluster2-{{name}}'
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/yaronyadid/argocd-example.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        {{- if ne .name "bootstrap" }}
+        helm:
+          valueFiles:
+          - ../../common/values.yaml
+          - ../../clusters/cluster2/values.yaml
+        {{- end }}
+      destination:
+        server: https://kubernetes.cluster2.example.com
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

@@ -1,14 +1,10 @@
 # ArgoCD Example Repository
 
-This repository contains a Helm-based structure for deploying applications across multiple clusters using ArgoCD.
+This repository contains applications to be deployed across multiple clusters using ArgoCD ApplicationSets.
 
 ## Structure
 
-- `apps/`: Contains the umbrella chart and individual application charts
-- `clusters/`: Contains cluster-specific values and application definitions
+- `apps/`: Contains individual application charts (nginx, redis)
+- `clusters/`: Contains cluster-specific values and ApplicationSet configurations
 - `common/`: Contains shared values across all clusters
-- `bootstrap/`: Contains bootstrap resources for ArgoCD setup
-
-## Usage
-
-Each cluster folder contains its own application set and values files for customizing deployments.
+- `bootstrap/`: Contains bootstrap resources for initial ArgoCD setup

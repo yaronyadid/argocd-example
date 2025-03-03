@@ -3,6 +3,7 @@ global:
   imageRegistry: docker.io
   imagePullSecrets: []
 
+# Default values that can be overridden by cluster-specific configs
 nginx:
   service:
     type: ClusterIP

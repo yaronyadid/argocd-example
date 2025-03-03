@@ -1,21 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster3-apps
+  name: all-clusters
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/yaronyadid/argocd-example.git
     targetRevision: HEAD
-    path: apps
-    helm:
-      valueFiles:
-        - ../../common/values.yaml
-        - ../../clusters/cluster3/values.yaml
+    directory:
+      include: "clusters/*/applicationset.yaml"
   destination:
-    server: https://kubernetes.cluster3.example.com
-    namespace: apps
+    server: https://kubernetes.default.svc
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
